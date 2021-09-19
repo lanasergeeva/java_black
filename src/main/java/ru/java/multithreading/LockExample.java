@@ -6,24 +6,9 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockExample {
     public static void main(String[] args) {
         Call call = new Call();
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                call.mobileCall();
-            }
-        });
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                call.skypeCall();
-            }
-        });
-        Thread thread3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                call.wacall();
-            }
-        });
+        Thread thread = new Thread(call::mobileCall);
+        Thread thread2 = new Thread(call::skypeCall);
+        Thread thread3 = new Thread(call::wacall);
         thread.start();
         thread2.start();
         thread3.start();
